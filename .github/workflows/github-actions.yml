@@ -9,21 +9,25 @@ jobs:
   unit-test:
     runs-on: [self-hosted, linux]
     steps:
-      - name: Checkout code & submodules
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
-
-      - name: Run unit tests
-        run: ./unit-test.sh
+    - name: Checkout code & submodules
+      uses: actions/checkout@v3
+      with:
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-known-hosts: github.com
+        submodules: recursive
+    
+    - name: Run unit tests
+      run: ./unit-test.sh
 
   full-test:
     runs-on: [self-hosted, linux]
     steps:
-      - name: Checkout code & submodules
-        uses: actions/checkout@v2
-        with:
-          submodules: recursive
-
-      - name: Run full tests (unit + func)
-        run: ./full-test.sh
+    - name: Checkout code & submodules
+      uses: actions/checkout@v3
+      with:
+        ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh-known-hosts: github.com
+        submodules: recursive
+    
+    - name: Run full tests (unit + func)
+      run: ./full-test.sh
