@@ -1,7 +1,6 @@
 #!/bin/bash
--set -e
-+set -e
-+exec </dev/null
+set -e
+exec </dev/null
 cd `dirname $0`
 test_dir=`pwd`
 echo "starting test with SKIP_BUILD=\"${SKIP_BUILD}\" and DO_VALIDATE=\"${DO_VALIDATE}\""
