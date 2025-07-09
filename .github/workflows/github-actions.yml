@@ -1,5 +1,3 @@
-
-
 name: assignment-test
 
 on:
@@ -12,7 +10,7 @@ jobs:
     runs-on: [self-hosted, linux]
     steps:
     - name: Checkout code & submodules
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
         ssh-known-hosts: github.com
@@ -25,7 +23,7 @@ jobs:
     runs-on: [self-hosted, linux]
     steps:
     - name: Checkout code & submodules
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       with:
         ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
         ssh-known-hosts: github.com
