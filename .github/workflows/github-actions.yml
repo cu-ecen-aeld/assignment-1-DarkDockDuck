@@ -8,18 +8,26 @@ on:
 jobs:
     unit-test:
         container: cuaesd/aesd-autotest:24-unit-test
-        runs-on: self-hosted
+        runs-on: [self-hosted, linux]
         steps:
           - uses: actions/checkout@v2
+            with:
+                ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+                ssh-known-hosts: github.com
+                submodules: recursive
           - name: Checkout submodules
             run : git submodule update --init --recursive
           - name: Run unit test
             run: ./unit-test.sh
     full-test:
         container: cuaesd/aesd-autotest:24-assignment1
-        runs-on: self-hosted
+        runs-on: [self-hosted, linux]
         steps:
           - uses: actions/checkout@v2
+            with:
+                ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+                ssh-known-hosts: github.com
+                submodules: recursive
           - name: Checkout submodules
             run : git submodule update --init --recursive
           - name: Run full test
